@@ -1,14 +1,13 @@
 package com.database.database.controller;
 
+import com.database.database.dto.EmployeeDetailsDto;
 import com.database.database.entity.EmployeeDetails;
 import com.database.database.service.EmployeeDetailsService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Controller
 public class EmployeeDetailsController {
     private final EmployeeDetailsService employeeService;
 
@@ -17,8 +16,8 @@ public class EmployeeDetailsController {
     }
 
     @PostMapping("/create")
-    public String save(@RequestBody EmployeeDetails employee) {
-        employeeService.saveData(employee);
+    public String save(@RequestBody EmployeeDetailsDto employeeDetailsDto) {
+        employeeService.saveData(employeeDetailsDto);
         return "1 row created";
     }
     @GetMapping("/employee/all")
@@ -27,12 +26,12 @@ public class EmployeeDetailsController {
     }
 
     @PutMapping("/Update/{id}")
-    public void update(@PathVariable Integer id, @RequestBody EmployeeDetails employeeDetails) {
-        employeeService.updateData(id, employeeDetails);
+    public void update(@PathVariable Integer id, @RequestBody EmployeeDetailsDto employeeDetailsDto) {
+        employeeService.updateData(id, employeeDetailsDto);
     }
     @DeleteMapping("/Delete/{id}")
     public String delete(@PathVariable Integer id) {
-        employeeService.deleteData(id);
-        return "Id " + id + " successfully Deleted.";
+        return employeeService.deleteData(id);
+
     }
 }

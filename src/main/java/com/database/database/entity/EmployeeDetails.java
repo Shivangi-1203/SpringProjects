@@ -17,13 +17,11 @@ public class EmployeeDetails {
     private String name;
     @Column(name = "e_email")
     private String email;
-    @Column(name ="e_salary")
+    @Column(name = "e_salary")
     private Integer salary;
-  /*****************************one to many mapping *********/
     @OneToMany(targetEntity = PhoneNo.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "e_id")
     private List<PhoneNo> phoneNoList = new ArrayList<>();
-
 
     public List<PhoneNo> getPhoneNoList() {
         return phoneNoList;
@@ -33,9 +31,6 @@ public class EmployeeDetails {
         this.phoneNoList = phoneNoList;
 
     }
-
-    /**************************************************/
-
 
     public Integer getId() {
         return id;

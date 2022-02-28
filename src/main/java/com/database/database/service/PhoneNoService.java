@@ -17,15 +17,13 @@ public class PhoneNoService {
     }
 
 
-    public  void saveData(PhoneNo phoneNo) {
+    public void saveData(PhoneNo phoneNo) {
         PhoneNo obj = new PhoneNo();
         obj.setPhoneNo(PhoneNoDto.getPhoneNo());
         obj.setCountryCode(PhoneNoDto.getCountryCode());
 
         phoneNoRepo.save(obj);
     }
-
-
 
     public List<PhoneNo> getAllPhoneNo() {
         return phoneNoRepo.findAll();
