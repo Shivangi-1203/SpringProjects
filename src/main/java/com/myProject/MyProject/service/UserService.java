@@ -39,11 +39,11 @@ public class UserService {
     public String updateData(Integer id, UserDto userDto) {
         User obj = userRepository.findById(id).orElseThrow();
         obj.setName(userDto.getName());
-        //obj.setEmail(userDto.getEmail());
-        //obj.setPhoneNumber(userDto.getPhone_number());
-        //obj.setAge(userDto.getAge());
-        //obj.setGender(userDto.getGender());
-        //obj.setPassword(userDto.getPassword());
+        obj.setEmail(userDto.getEmail());
+        obj.setPhoneNumber(userDto.getPhone_number());
+        obj.setAge(userDto.getAge());
+        obj.setGender(userDto.getGender());
+        obj.setPassword(userDto.getPassword());
         userRepository.save(obj);
         return "Data updated successfully !!";
     }
@@ -56,9 +56,13 @@ public class UserService {
     public String login(String email, String password) {
         User user = userRepository.findUser(email, password);
 
-        if (user.getEmail().equals(email) && user.getPassword().equals(password) ) {
-            message = "Successfully Login !!!!";
-        } else {
+        try {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                message = "Successfully Login !!!!";
+            }
+        }
+        catch(NullPointerException nullPointerException){
+
             message = "You have entered wrong email or password !!";
         }
         return message;
