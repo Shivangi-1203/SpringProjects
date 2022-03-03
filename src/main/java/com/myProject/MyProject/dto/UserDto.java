@@ -17,7 +17,7 @@ public class UserDto {
     @NotNull
     private String email;
     @NotNull
-    private String phone_number;
+    private String phoneNumber;
     @NotNull
     private Integer age;
     @NotNull

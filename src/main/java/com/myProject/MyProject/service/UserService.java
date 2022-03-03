@@ -22,7 +22,7 @@ public class UserService {
         obj.setId(userDto.getId());
         obj.setName(userDto.getName());
         obj.setEmail(userDto.getEmail());
-        obj.setPhoneNumber(userDto.getPhone_number());
+        obj.setPhoneNumber(userDto.getPhoneNumber());
         obj.setAge(userDto.getAge());
         obj.setGender(userDto.getGender());
         obj.setPassword(userDto.getPassword());
@@ -40,7 +40,7 @@ public class UserService {
         User obj = userRepository.findById(id).orElseThrow();
         obj.setName(userDto.getName());
         obj.setEmail(userDto.getEmail());
-        obj.setPhoneNumber(userDto.getPhone_number());
+        obj.setPhoneNumber(userDto.getPhoneNumber());
         obj.setAge(userDto.getAge());
         obj.setGender(userDto.getGender());
         obj.setPassword(userDto.getPassword());
@@ -54,15 +54,12 @@ public class UserService {
     }
 
     public String login(String email, String password) {
-        User user = userRepository.findUser(email, password);
 
-        try {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                message = "Successfully Login !!!!";
-            }
+        if (userRepository.findUser(email, password)!=null ) {
+            message = "Successfully Login !!!!";
         }
-        catch(NullPointerException nullPointerException){
-
+        else
+        {
             message = "You have entered wrong email or password !!";
         }
         return message;
